@@ -1,17 +1,16 @@
 pipeline {
     agent any
         environment {
-        //once you sign up for Docker hub, use that user_id here
-        registry = "ananthkannan/mypython-app-may20"
+        registry = "fleetmindacr"
         //- update your credentials ID after creating credentials for connecting to Docker Hub
-        registryCredential = 'dockerhub'
+        registryCredential = 'ACR'
         dockerImage = ''
     }
     stages {
 
         stage ('checkout') {
             steps {
-            checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/akannan1087/myPythonDockerRepo']]])
+            checkout scmGit(branches: [[name: '*/dependabot/pip/flask-1.0']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/harikrishnapalakila/fleetmind.git']])
             }
         }
        
