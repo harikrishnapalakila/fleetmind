@@ -29,7 +29,7 @@ pipeline {
     stage('Upload Image') {
      steps{   
          script {
-             docker.withRegistry( 'http://${registryUrl}', registryCredential ) {
+             docker.withRegistry( "http://${registryUrl}", registryCredential ) {
             dockerImage.push()
             }
         }
