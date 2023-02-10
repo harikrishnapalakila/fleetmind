@@ -4,6 +4,7 @@ pipeline {
         registry = "fleetmindacr"
         //- update your credentials ID after creating credentials for connecting to Docker Hub
         registryCredential = 'ACR'
+        registryUrl = 'fleetmindacr.azurecr.io'
         dockerImage = ''
     }
     stages {
@@ -28,7 +29,7 @@ pipeline {
     stage('Upload Image') {
      steps{   
          script {
-            docker.withRegistry( '', registryCredential ) {
+             docker.withRegistry( 'http://${registryUrl}', registryCredential ) {
             dockerImage.push()
             }
         }
